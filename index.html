@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09090b">
+  <meta
+    name="description"
+    content="ZYLOR — создание современных сайтов. Портфолио проектов, цены и контакты."
+  >
+  <title>ZYLOR® — сайты с характером</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #09090b;
+      --surface: #111114;
+      --text: #f4f2f7;
+      --muted: #92909a;
+      --lime: #c8ff55;
+      --purple: #a78bfa;
+      --line: rgba(255, 255, 255, 0.11);
+      --sans: "DM Sans", sans-serif;
+      --display: "Space Grotesk", sans-serif;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-width: 320px;
+      margin: 0;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--sans);
+    }
+
+    body::before {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.022) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 54px 54px;
+      content: "";
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, #000, transparent 83%);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1160px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .topbar {
+      position: fixed;
+      top: 0;
+      right: 0;
+      left: 0;
+      z-index: 20;
+      border-bottom: 1px solid transparent;
+      transition: background 200ms ease, border-color 200ms ease;
+    }
+
+    .topbar.scrolled {
+      border-color: var(--line);
+      background: rgba(9, 9, 11, 0.8);
+      backdrop-filter: blur(18px);
+    }
+
+    .nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--display);
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .brand-mark {
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(200, 255, 85, 0.55);
+      border-radius: 11px;
+      background: rgba(200, 255, 85, 0.08);
+      color: var(--lime);
+      transform: rotate(-7deg);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      color: #b2b0b9;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .nav-links a {
+      transition: color 180ms ease;
+    }
+
+    .nav-links a:hover {
+      color: var(--lime);
+    }
+
+    .contact-button,
+    .button {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 17px;
+      border: 1px solid var(--lime);
+      border-radius: 8px;
+      background: var(--lime);
+      color: #11120d;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      transition: transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .contact-button:hover,
+    .button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 9px 28px rgba(200, 255, 85, 0.18);
+    }
+
+    .button-secondary {
+      border-color: var(--line);
+      background: rgba(255, 255, 255, 0.045);
+      color: var(--text);
+    }
+
+    .button-secondary:hover {
+      border-color: rgba(200, 255, 85, 0.48);
+      background: rgba(200, 255, 85, 0.08);
+      box-shadow: none;
+    }
+
+    .hero {
+      min-height: 770px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 125px 0 100px;
+    }
+
+    .hero::before {
+      position: absolute;
+      top: 11%;
+      right: -170px;
+      width: 620px;
+      height: 620px;
+      border: 1px solid rgba(200, 255, 85, 0.2);
+      border-radius: 50%;
+      box-shadow:
+        0 0 0 45px rgba(200, 255, 85, 0.025),
+        0 0 0 110px rgba(167, 139, 250, 0.025),
+        0 0 130px rgba(200, 255, 85, 0.06);
+      content: "";
+      animation: orbit 32s linear infinite;
+    }
+
+    .hero::after {
+      position: absolute;
+      top: 22%;
+      right: 10%;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 25px var(--lime);
+      content: "";
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1.08fr 0.72fr;
+      align-items: center;
+      gap: 45px;
+      padding-left: clamp(16px, 4vw, 48px);
+    }
+
+    .hero-copy {
+      animation: enter 850ms ease both;
+    }
+
+    .availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 25px;
+      padding: 9px 12px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      background: rgba(255, 255, 255, 0.03);
+      color: #c8c5cf;
+      font-size: 9px;
+      letter-spacing: 0.5px;
+    }
+
+    .availability-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 12px rgba(200, 255, 85, 0.8);
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      margin-bottom: 19px;
+      font-family: var(--display);
+      font-size: clamp(68px, 9vw, 118px);
+      font-weight: 700;
+      letter-spacing: -7px;
+      line-height: 0.9;
+    }
+
+    .hero-name {
+      display: block;
+      color: var(--lime);
+      font-size: 0.88em;
+      letter-spacing: -5px;
+      text-shadow: 0 0 50px rgba(200, 255, 85, 0.12);
+    }
+
+    .hero-subtitle {
+      max-width: 520px;
+      margin-top: 25px;
+      font-family: var(--display);
+      font-size: clamp(17px, 1.8vw, 22px);
+      font-weight: 500;
+      letter-spacing: -0.4px;
+      line-height: 1.45;
+    }
+
+    .hero-description {
+      max-width: 430px;
+      margin: 13px 0 25px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 43px;
+    }
+
+    .stat {
+      padding-left: 11px;
+      border-left: 2px solid var(--lime);
+    }
+
+    .stat strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 17px;
+    }
+
+    .stat span {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 9px;
+      letter-spacing: 0.5px;
+    }
+
+    .hero-card-wrap {
+      position: relative;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .hero-card {
+      position: relative;
+      min-height: 430px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 13px;
+      background:
+        linear-gradient(180deg, rgba(9, 9, 11, 0.08), rgba(9, 9, 11, 0.95)),
+        url("https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=1000&q=85")
+          center / cover;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.42);
+    }
+
+    .hero-card::after {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        145deg,
+        rgba(200, 255, 85, 0.14),
+        transparent 40%,
+        rgba(167, 139, 250, 0.14)
+      );
+      content: "";
+    }
+
+    .hero-card-content {
+      position: absolute;
+      right: 22px;
+      bottom: 20px;
+      left: 22px;
+      z-index: 1;
+    }
+
+    .hero-card-label {
+      margin-bottom: 8px;
+      color: var(--lime);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .hero-card-title {
+      font-family: var(--display);
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    .floating-label {
+      position: absolute;
+      z-index: 2;
+      top: 32px;
+      left: -26px;
+      padding: 12px 15px;
+      border: 1px solid rgba(200, 255, 85, 0.36);
+      border-radius: 9px;
+      background: rgba(17, 17, 20, 0.86);
+      color: var(--lime);
+      font-family: var(--display);
+      font-size: 11px;
+      font-weight: 700;
+      backdrop-filter: blur(10px);
+    }
+
+    .floating-label.bottom {
+      top: auto;
+      right: -18px;
+      bottom: 100px;
+      left: auto;
+      border-color: var(--line);
+      color: var(--text);
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 28px;
+      left: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator span {
+      width: 32px;
+      height: 1px;
+      background: var(--lime);
+    }
+
+    section {
+      padding: 100px 0;
+      scroll-margin-top: 80px;
+    }
+
+    .section-label {
+      margin-bottom: 13px;
+      color: var(--lime);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      margin-bottom: 14px;
+      font-family: var(--display);
+      font-size: clamp(35px, 5.5vw, 62px);
+      font-weight: 600;
+      letter-spacing: -2.3px;
+      line-height: 1;
+    }
+
+    .section-description {
+      max-width: 490px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 36px;
+    }
+
+    .section-heading .section-description {
+      max-width: 380px;
+    }
+
+    .pricing {
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 10% 30%, rgba(200, 255, 85, 0.055), transparent 35%),
+        var(--bg);
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .price-card {
+      display: flex;
+      flex-direction: column;
+      min-height: 320px;
+      padding: 23px;
+      border: 1px solid var(--line);
+      border-radius: 11px;
+      background: var(--surface);
+      transition: transform 200ms ease, border-color 200ms ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(200, 255, 85, 0.42);
+    }
+
+    .price-level {
+      margin-bottom: 13px;
+      color: var(--lime);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .price-card h3 {
+      margin-bottom: 9px;
+      font-family: var(--display);
+      font-size: 21px;
+    }
+
+    .price-card > p {
+      min-height: 40px;
+      margin-bottom: 18px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.7;
+    }
+
+    .price-amount {
+      margin-bottom: 17px;
+      font-family: var(--display);
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -1px;
+    }
+
+    .price-features {
+      display: grid;
+      gap: 9px;
+      margin: 0 0 21px;
+      padding: 0;
+      color: #c1bec8;
+      font-size: 9px;
+      list-style: none;
+    }
+
+    .price-features li::before {
+      margin-right: 8px;
+      color: var(--lime);
+      content: "✓";
+    }
+
+    .project-link {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      gap: 9px;
+      margin-top: auto;
+      padding: 0 13px;
+      border: 1px solid rgba(200, 255, 85, 0.45);
+      border-radius: 7px;
+      color: var(--lime);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .project-link:hover {
+      background: var(--lime);
+      color: #10110c;
+    }
+
+    .price-note {
+      margin: 22px 0 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .price-note a {
+      color: var(--lime);
+      text-decoration: underline;
+      text-decoration-color: rgba(200, 255, 85, 0.45);
+      text-underline-offset: 4px;
+    }
+
+    .price-note a:hover {
+      text-decoration-color: var(--lime);
+    }
+
+    .projects {
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 85% 5%, rgba(167, 139, 250, 0.07), transparent 35%),
+        var(--bg);
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .project-card {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--surface);
+      transition: border-color 220ms ease, transform 220ms ease, box-shadow 220ms ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(200, 255, 85, 0.42);
+      box-shadow: 0 20px 55px rgba(0, 0, 0, 0.23);
+    }
+
+    .project-card.featured {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+    }
+
+    .project-visual {
+      position: relative;
+      min-height: 265px;
+      overflow: hidden;
+      background-color: #19171f;
+      background-position: center;
+      background-size: cover;
+    }
+
+    .featured .project-visual {
+      min-height: 345px;
+    }
+
+    .project-visual::before {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.02), rgba(0, 0, 0, 0.4));
+      content: "";
+    }
+
+    .project-visual::after {
+      position: absolute;
+      inset: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      content: "";
+      pointer-events: none;
+    }
+
+    .visual-neon {
+      background-image: url("https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1200&q=85");
+    }
+
+    .visual-aurora {
+      background-image: url("https://images.unsplash.com/photo-1510798831971-661eb04b3739?auto=format&fit=crop&w=1000&q=85");
+    }
+
+    .visual-nova {
+      background-image: url("https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1000&q=85");
+    }
+
+    .project-number {
+      position: absolute;
+      top: 24px;
+      left: 25px;
+      z-index: 1;
+      color: rgba(255, 255, 255, 0.85);
+      font-family: var(--display);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+    }
+
+    .project-visual-tag {
+      position: absolute;
+      right: 25px;
+      bottom: 24px;
+      z-index: 1;
+      padding: 8px 10px;
+      border: 1px solid rgba(255, 255, 255, 0.44);
+      border-radius: 99px;
+      background: rgba(9, 9, 11, 0.3);
+      color: white;
+      font-size: 8px;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      backdrop-filter: blur(8px);
+    }
+
+    .project-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 25px;
+    }
+
+    .project-type {
+      margin-bottom: 12px;
+      color: var(--lime);
+      font-size: 8px;
+      font-weight: 800;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .project-info h3 {
+      margin-bottom: 10px;
+      font-family: var(--display);
+      font-size: 23px;
+      font-weight: 600;
+      letter-spacing: -0.6px;
+    }
+
+    .project-info p {
+      margin-bottom: 20px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .project-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .project-tags span {
+      padding: 7px 9px;
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      color: #b5b2bd;
+      font-size: 8px;
+    }
+
+    .about {
+      border-top: 1px solid var(--line);
+      background: var(--surface);
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      align-items: center;
+      gap: 72px;
+    }
+
+    .about-statement {
+      position: relative;
+      padding: 34px;
+      border: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 80% 0%, rgba(200, 255, 85, 0.09), transparent 45%),
+        var(--bg);
+    }
+
+    .about-statement::after {
+      position: absolute;
+      top: 19px;
+      right: 19px;
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--lime);
+      box-shadow: 0 0 14px var(--lime);
+      content: "";
+    }
+
+    .about-statement p {
+      margin-bottom: 0;
+      font-family: var(--display);
+      font-size: clamp(24px, 3vw, 38px);
+      font-weight: 500;
+      letter-spacing: -1.2px;
+      line-height: 1.25;
+    }
+
+    .about-statement em {
+      color: var(--lime);
+      font-style: normal;
+    }
+
+    .about-copy p {
+      color: #b0adb8;
+      font-size: 11px;
+      line-height: 1.95;
+    }
+
+    .values {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    .value {
+      padding: 15px 13px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .value strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--lime);
+      font-family: var(--display);
+      font-size: 13px;
+    }
+
+    .value span {
+      color: var(--muted);
+      font-size: 8px;
+      line-height: 1.5;
+    }
+
+    .process {
+      background: var(--bg);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line);
+    }
+
+    .process-step {
+      min-height: 180px;
+      padding: 22px 19px;
+      border-right: 1px solid var(--line);
+      transition: background 180ms ease;
+    }
+
+    .process-step:last-child {
+      border-right: 0;
+    }
+
+    .process-step:hover {
+      background: var(--surface);
+    }
+
+    .step-number {
+      display: block;
+      margin-bottom: 24px;
+      color: var(--lime);
+      font-family: var(--display);
+      font-size: 11px;
+    }
+
+    .process-step h3 {
+      margin-bottom: 8px;
+      font-family: var(--display);
+      font-size: 15px;
+    }
+
+    .process-step p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 9px;
+      line-height: 1.7;
+    }
+
+    .contact {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--line);
+      background:
+        radial-gradient(ellipse at 90% 10%, rgba(200, 255, 85, 0.12), transparent 35%),
+        var(--surface);
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 0.65fr;
+      align-items: end;
+      gap: 55px;
+    }
+
+    .contact h2 {
+      max-width: 720px;
+      margin-bottom: 18px;
+      font-size: clamp(46px, 8vw, 91px);
+      letter-spacing: -5px;
+    }
+
+    .contact h2 span {
+      color: var(--lime);
+    }
+
+    .contact-text {
+      max-width: 480px;
+      color: var(--muted);
+      font-size: 11px;
+      line-height: 1.9;
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .contact-link {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 0 17px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.025);
+      transition: border-color 180ms ease, background 180ms ease, transform 180ms ease;
+    }
+
+    .contact-link:hover {
+      transform: translateX(4px);
+      border-color: rgba(200, 255, 85, 0.48);
+      background: rgba(200, 255, 85, 0.045);
+    }
+
+    .contact-link-label {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--muted);
+      font-size: 8px;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+    }
+
+    .contact-link strong {
+      font-family: var(--display);
+      font-size: 13px;
+    }
+
+    .contact-arrow {
+      color: var(--lime);
+      font-size: 18px;
+    }
+
+    footer {
+      padding: 25px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 17px;
+    }
+
+    .footer-inner .brand {
+      color: var(--text);
+      font-size: 16px;
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 17px;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity 650ms ease, transform 650ms ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes enter {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-9px);
+      }
+    }
+
+    @keyframes orbit {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        gap: 15px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr 0.7fr;
+        gap: 25px;
+      }
+
+      .hero-card {
+        min-height: 360px;
+      }
+
+      .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .price-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .project-card.featured {
+        grid-template-columns: 1fr;
+      }
+
+      .featured .project-visual {
+        min-height: 300px;
+      }
+
+      .about-grid {
+        gap: 35px;
+      }
+
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .process-step:nth-child(2) {
+        border-right: 0;
+      }
+
+      .process-step:nth-child(-n + 2) {
+        border-bottom: 1px solid var(--line);
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .container {
+        width: min(100% - 30px, 1160px);
+      }
+
+      .nav {
+        min-height: 68px;
+      }
+
+      .brand {
+        font-size: 17px;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .contact-button {
+        min-height: 38px;
+        padding-inline: 11px;
+        font-size: 8px;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 125px 0 90px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 38px;
+        padding-left: 0;
+      }
+
+      .hero::before {
+        top: 4%;
+        right: -330px;
+        width: 500px;
+        height: 500px;
+      }
+
+      .hero::after {
+        top: 13%;
+        right: 10%;
+      }
+
+      h1 {
+        font-size: clamp(62px, 17vw, 92px);
+        letter-spacing: -4px;
+      }
+
+      .hero-name {
+        letter-spacing: -3px;
+      }
+
+      .hero-subtitle {
+        max-width: 390px;
+        margin-top: 20px;
+        font-size: 17px;
+      }
+
+      .hero-stats {
+        gap: 18px;
+        margin-top: 34px;
+      }
+
+      .hero-card {
+        min-height: 310px;
+      }
+
+      .floating-label {
+        left: 9px;
+      }
+
+      .floating-label.bottom {
+        right: 8px;
+      }
+
+      .scroll-indicator {
+        bottom: 22px;
+        left: 15px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .section-heading {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .pricing-grid,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card:last-child {
+        grid-column: auto;
+      }
+
+      .project-card.featured {
+        grid-column: auto;
+      }
+
+      .project-visual,
+      .featured .project-visual {
+        min-height: 250px;
+      }
+
+      .project-info {
+        padding: 21px;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .about-statement {
+        padding: 25px;
+      }
+
+      .values {
+        gap: 7px;
+      }
+
+      .value {
+        padding: 12px 9px;
+      }
+
+      .value strong {
+        font-size: 11px;
+      }
+
+      .value span {
+        font-size: 7px;
+      }
+
+      .process-step {
+        min-height: 165px;
+        padding: 17px 13px;
+      }
+
+      .contact h2 {
+        font-size: clamp(48px, 14vw, 72px);
+        letter-spacing: -3px;
+      }
+
+      .footer-inner {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar" id="topbar">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="ZYLOR — главная">
+        <span class="brand-mark">Z</span>
+        <span>ZYLOR®</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Основная навигация">
+        <a href="#projects">Проекты</a>
+        <a href="#pricing">Цены</a>
+        <a href="#about">Обо мне</a>
+        <a href="#process">Подход</a>
+        <a href="#contact">Контакты</a>
+      </nav>
+
+      <a class="contact-button" href="#contact">
+        Обсудить проект <span>↗</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <div class="availability">
+            <span class="availability-dot"></span>
+            Создаю сайты · открыт к новым проектам
+          </div>
+
+          <h1><span class="hero-name">ZYLOR</span></h1>
+
+          <div class="hero-subtitle">
+            Сайты с характером. Дизайн, который запоминается.
+          </div>
+
+          <p class="hero-description">
+            Разрабатываю современные сайты: продумываю визуальный стиль,
+            собираю страницы и превращаю идеи в готовые цифровые проекты.
+          </p>
+
+          <div class="hero-actions">
+            <a class="button" href="#projects">Смотреть проекты <span>↓</span></a>
+            <a class="button button-secondary" href="#contact">Связаться со мной ↗</a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>03</strong>
+              <span>проекта в портфолио</span>
+            </div>
+            <div class="stat">
+              <strong>01</strong>
+              <span>цель — сильный результат</span>
+            </div>
+            <div class="stat">
+              <strong>100%</strong>
+              <span>внимание к деталям</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card-wrap" aria-label="Визуальная карточка портфолио ZYLOR">
+          <div class="floating-label">DESIGN / BUILD / CREATE</div>
+
+          <div class="hero-card">
+            <div class="hero-card-content">
+              <div class="hero-card-label">Digital portfolio · 2026</div>
+              <div class="hero-card-title">Идея. Дизайн. Готовый сайт.</div>
+            </div>
+          </div>
+
+          <div class="floating-label bottom">WEB CREATOR · ZYLOR®</div>
+        </div>
+      </div>
+
+      <div class="scroll-indicator"><span></span> Листай ниже</div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">Понятные стартовые цены</div>
+            <h2>Сколько стоит сайт</h2>
+          </div>
+          <p class="section-description">
+            Это ориентиры для простых проектов. Точная стоимость зависит от объёма,
+            функций и материалов.
+          </p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card reveal">
+            <div class="price-level">Старт</div>
+            <h3>Одностраничный сайт</h3>
+            <p>Компактная страница для личного проекта, услуги или небольшой идеи.</p>
+            <div class="price-amount">от 2 000 ₽</div>
+            <ul class="price-features">
+              <li>Основные блоки на одной странице</li>
+              <li>Адаптация под телефон</li>
+              <li>Кнопки и базовые эффекты</li>
+            </ul>
+            <a class="project-link" href="#contact">Обсудить проект ↗</a>
+          </article>
+
+          <article class="price-card reveal">
+            <div class="price-level">Популярный формат</div>
+            <h3>Сайт для бизнеса</h3>
+            <p>Небольшой сайт с несколькими разделами для проекта или компании.</p>
+            <div class="price-amount">от 4 000 ₽</div>
+            <ul class="price-features">
+              <li>Несколько страниц или разделов</li>
+              <li>Индивидуальное оформление</li>
+              <li>Адаптация под мобильные экраны</li>
+            </ul>
+            <a class="project-link" href="#contact">Обсудить проект ↗</a>
+          </article>
+
+          <article class="price-card reveal">
+            <div class="price-level">По задаче</div>
+            <h3>Сложный проект</h3>
+            <p>Сайт с дополнительными разделами, интерактивом или особой логикой.</p>
+            <div class="price-amount">от 6 000 ₽</div>
+            <ul class="price-features">
+              <li>Объём и функции обсуждаем заранее</li>
+              <li>Стоимость зависит от задачи</li>
+              <li>План работ согласуем до старта</li>
+            </ul>
+            <a class="project-link" href="#contact">Рассказать идею ↗</a>
+          </article>
+        </div>
+
+        <p class="price-note reveal">
+          Не подходит цена или нужен другой объём работ?
+          <a href="#contact">Давайте обсудим стоимость — напиши мне в контакты.</a>
+          Итоговую цену согласуем до начала работы.
+        </p>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">Избранные работы · 01—03</div>
+            <h2>Сайты, которые говорят сами за себя</h2>
+          </div>
+          <p class="section-description">
+            Три разных направления и три разных настроения. Открой любой проект,
+            чтобы посмотреть сайт целиком.
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card featured reveal">
+            <div class="project-visual visual-neon">
+              <span class="project-number">PROJECT / 01</span>
+              <span class="project-visual-tag">Gaming · Entertainment</span>
+            </div>
+
+            <div class="project-info">
+              <div class="project-type">Компьютерный клуб · Лендинг</div>
+              <h3>NEON ARENA</h3>
+              <p>
+                Сайт игрового клуба с неоновым настроением, игровыми зонами,
+                тарифами и интерактивным выбором места для бронирования.
+              </p>
+              <div class="project-tags">
+                <span>Тёмный стиль</span>
+                <span>Бронирование</span>
+                <span>Адаптивный дизайн</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://neon-arena-pc.github.io/neon-arena/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть сайт <span>↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-aurora">
+              <span class="project-number">PROJECT / 02</span>
+              <span class="project-visual-tag">Travel · Hospitality</span>
+            </div>
+
+            <div class="project-info">
+              <div class="project-type">Эко-отель · Сайт отдыха</div>
+              <h3>AURORA</h3>
+              <p>
+                Атмосферный сайт горного эко-отеля: шале, впечатления, фотогалерея
+                и форма запроса на бронирование.
+              </p>
+              <div class="project-tags">
+                <span>Природная палитра</span>
+                <span>Галерея</span>
+                <span>Анимации</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://aurora-eko-hotel.github.io/aurora-hotel/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть сайт <span>↗</span>
+              </a>
+            </div>
+          </article>
+
+          <article class="project-card reveal">
+            <div class="project-visual visual-nova">
+              <span class="project-number">PROJECT / 03</span>
+              <span class="project-visual-tag">Music · Event</span>
+            </div>
+
+            <div class="project-info">
+              <div class="project-type">Музыкальный фестиваль · Промосайт</div>
+              <h3>NOVA FEST</h3>
+              <p>
+                Яркий сайт фестиваля с лайнапом, программой по дням, вариантами
+                билетов и схематичной картой площадки.
+              </p>
+              <div class="project-tags">
+                <span>Фестиваль</span>
+                <span>Программа</span>
+                <span>Интерактив</span>
+              </div>
+              <a
+                class="project-link"
+                href="https://nova-music-fest.github.io/nova-fest/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Открыть сайт <span>↗</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="container about-grid">
+        <div class="about-statement reveal">
+          <p>
+            Хороший сайт — это не просто картинка.
+            Это <em>ощущение</em>, которое остаётся после просмотра.
+          </p>
+        </div>
+
+        <div class="about-copy reveal">
+          <div class="section-label">Кто такой ZYLOR</div>
+          <h2>Делаю идеи заметными</h2>
+          <p>
+            Я создаю сайты и уделяю внимание не только внешнему виду, но и тому,
+            как человек проходит по странице: что замечает первым, куда нажимает
+            и какое впечатление уносит с собой.
+          </p>
+          <p>
+            Для каждого проекта подбираю свой визуальный язык — от неонового
+            игрового пространства до спокойного отеля в горах или яркого фестиваля.
+          </p>
+
+          <div class="values">
+            <div class="value">
+              <strong>Визуал</strong>
+              <span>Стиль, композиция и детали</span>
+            </div>
+            <div class="value">
+              <strong>Удобство</strong>
+              <span>Понятная структура страниц</span>
+            </div>
+            <div class="value">
+              <strong>Адаптивность</strong>
+              <span>Комфортно на разных экранах</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="process" id="process">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="section-label">От идеи до публикации</div>
+            <h2>Как появляется сайт</h2>
+          </div>
+          <p class="section-description">
+            Понятный рабочий процесс: сначала идея и структура, затем визуальный
+            стиль, разработка и запуск.
+          </p>
+        </div>
+
+        <div class="process-grid reveal">
+          <article class="process-step">
+            <span class="step-number">01 / ИДЕЯ</span>
+            <h3>Задача и направление</h3>
+            <p>Определяем, для кого сайт и какое впечатление он должен создавать.</p>
+          </article>
+
+          <article class="process-step">
+            <span class="step-number">02 / ДИЗАЙН</span>
+            <h3>Стиль и структура</h3>
+            <p>Подбираем визуальный язык, цвета, блоки и логику страницы.</p>
+          </article>
+
+          <article class="process-step">
+            <span class="step-number">03 / РАЗРАБОТКА</span>
+            <h3>Сборка сайта</h3>
+            <p>Создаём страницы, добавляем анимации и проверяем на телефоне.</p>
+          </article>
+
+          <article class="process-step">
+            <span class="step-number">04 / ЗАПУСК</span>
+            <h3>Публикация</h3>
+            <p>Готовим сайт к размещению в интернете и проверяем ссылки.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <div class="section-label">Есть идея?</div>
+          <h2>Давай сделаем её <span>сайтом.</span></h2>
+          <p class="contact-text">
+            Напиши мне, расскажи, что хочешь создать, — обсудим идею и возможный
+            формат проекта. Я на связи в Telegram и VK.
+          </p>
+        </div>
+
+        <div class="contact-links reveal">
+          <a
+            class="contact-link"
+            href="https://t.me/zylor_web"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Написать ZYLOR в Telegram"
+          >
+            <span>
+              <span class="contact-link-label">Написать мне</span>
+              <strong>Telegram · @zylor_web</strong>
+            </span>
+            <span class="contact-arrow">↗</span>
+          </a>
+
+          <a
+            class="contact-link"
+            href="https://vk.ru/zylor_web"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Открыть страницу ZYLOR во ВКонтакте"
+          >
+            <span>
+              <span class="contact-link-label">Моя страница</span>
+              <strong>ВКонтакте · zylor_web</strong>
+            </span>
+            <span class="contact-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">Z</span>
+        <span>ZYLOR®</span>
+      </a>
+
+      <span>© 2026 ZYLOR · Веб-дизайн и создание сайтов</span>
+
+      <div class="footer-links">
+        <a href="#projects">Проекты</a>
+        <a href="#pricing">Цены</a>
+        <a href="https://t.me/zylor_web" target="_blank" rel="noopener noreferrer">
+          Telegram ↗
+        </a>
+        <a href="https://vk.ru/zylor_web" target="_blank" rel="noopener noreferrer">
+          VK ↗
+        </a>
+        <a href="#home">Наверх ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const topbar = document.querySelector("#topbar");
+
+    function updateHeader() {
+      topbar.classList.toggle("scrolled", window.scrollY > 20);
+    }
+
+    updateHeader();
+    window.addEventListener("scroll", updateHeader, { passive: true });
+
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    document.querySelectorAll(".reveal").forEach((element) => {
+      revealObserver.observe(element);
+    });
+  </script>
+</body>
+</html>
